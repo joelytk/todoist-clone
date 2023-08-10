@@ -1,18 +1,20 @@
+import { BsPlusLg, BsSun } from 'react-icons/bs';
+
 const Header = () => {
   return (
-    <header className='header' data-testid='header'>
-      <nav>
-        <div className='logo'>
-          <img src='/images/logo.png' alt='Todoist' />
-        </div>
+    <header data-testid='header'>
+      <div className='logo'>
+        <img src='/vite.svg' alt='Todoist' />
+      </div>
 
-        <div className='settings'>
-          <ul>
-            <li>+</li>
-            <li>Pizza Slice!</li>
-          </ul>
-        </div>
-      </nav>
+      <div className='settings'>
+        <button>
+          <BsPlusLg fontSize={24} />
+        </button>
+        <button>
+          <BsSun fontSize={20} />
+        </button>
+      </div>
     </header>
   );
 };
