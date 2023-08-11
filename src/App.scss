@@ -24,6 +24,10 @@ button {
   cursor: pointer;
 }
 
+h1 {
+  font-size: 1.4rem;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -63,23 +67,38 @@ header {
     background-color: #fafafa;
     padding: 16px;
 
-    .top-menu {
+    .top-menu,
+    .projects {
+      display: flex;
+      flex-direction: column;
       margin-bottom: 16px;
 
-      li {
+      a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
         padding: 8px;
         border-radius: 4px;
-        cursor: pointer;
+        color: #202020;
+        text-decoration: none;
 
-        &.selected,
-        &:hover {
+        &:hover,
+        &.active {
           background-color: #eee;
         }
       }
+    }
+
+    .projects__title {
+      font-size: 1rem;
+      margin-bottom: 8px;
     }
   }
 
   main {
     flex: 1;
+    padding: 16px;
+    margin: 0 auto;
+    max-width: 768px;
   }
 }

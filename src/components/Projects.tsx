@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 import { useProjects } from '../hooks';
 
 const Projects = () => {
@@ -6,15 +8,21 @@ const Projects = () => {
   return (
     <div>
       {projectsError && <strong>Error: {JSON.stringify(projectsError)}</strong>}
-      Projects:
+      <h2 className='projects__title'>Projects</h2>
       {isProjectsLoading ? (
         <span>Loading...</span>
       ) : (
-        <ul className='projects'>
+        <nav className='projects'>
           {projects?.map(project => (
-            <li key={project.id}>{project.name}</li>
+            <NavLink
+              key={project.id}
+              to={`/project/${project.id}`}
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              {project.name}
+            </NavLink>
           ))}
-        </ul>
+        </nav>
       )}
     </div>
   );

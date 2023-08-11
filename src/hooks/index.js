@@ -20,8 +20,8 @@ export const useProjects = () => {
     if (value?.docs) {
       setProjects(
         value.docs?.map(project => ({
-          id: project.id,
-          ...project.data()
+          ...project.data(),
+          id: project.id
         }))
       );
     }
@@ -35,15 +35,16 @@ export const useProjects = () => {
 };
 
 const tasksRef = collection(db, 'tasks');
-const tasksQuery = query(
-  tasksRef,
-  where('userId', '==', '1JbLNUB9BUKyJ52PkDNf')
-  // orderBy('name'),
-  // limit(3)
-);
+const tasksQuery = projectId =>
+  query(
+    tasksRef,
+    where('userId', '==', '1JbLNUB9BUKyJ52PkDNf'),
+    where('projectId', '==', projectId)
+    // orderBy('createdAt')
+  );
 
-export const useTasks = selectedProject => {
-  const [value, loading, error] = useCollection(tasksQuery, {
+export const useTasks = projectId => {
+  const [value, loading, error] = useCollection(tasksQuery(projectId), {
     snapshotListenOptions: { includeMetadataChanges: true }
   });
   const [tasks, setTasks] = useState([]);
@@ -52,8 +53,9 @@ export const useTasks = selectedProject => {
     if (value?.docs) {
       setTasks(
         value.docs?.map(task => ({
+          ...task.data(),
           id: task.id,
-          ...task.data()
+          createdAt: new Date(task.data()?.createdAt?.seconds * 1000)
         }))
       );
     }

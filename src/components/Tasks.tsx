@@ -1,7 +1,7 @@
 import { useTasks } from '../hooks';
 
-const Tasks = () => {
-  const { tasks, isTasksLoading, tasksError } = useTasks();
+const Tasks = ({ projectId }) => {
+  const { tasks, isTasksLoading, tasksError } = useTasks(projectId);
 
   return (
     <div>

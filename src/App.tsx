@@ -1,6 +1,7 @@
+import { Outlet } from 'react-router-dom';
+
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
-import Tasks from './components/Tasks';
 
 import './App.scss';
 
@@ -11,7 +12,7 @@ const App = () => {
       <div className='content'>
         <Sidebar />
         <main>
-          <Tasks />
+          <Outlet />
         </main>
       </div>
     </>
